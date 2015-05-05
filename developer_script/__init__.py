@@ -5,6 +5,7 @@ import time
 import getpass
 import smtplib
 from email.mime.text import MIMEText
+import socket
 
 to_addr = 'al@rating.vc'
 
@@ -78,7 +79,7 @@ if ans == 'y':
                 smtpObj = smtplib.SMTP('localhost')
                 smtpObj.sendmail(getpass.getuser(), [email,], to_addr, message.format(getpass.getuser(), email))
                 print "Successfully sent email"
-            except (smtplib.SMTPException, smtplib.SMTPConnectError):
+            except (smtplib.SMTPException, smtplib.SMTPConnectError, socket.error) as e:
                 print "Error: unable to send the email"
                 print "Send your CV to {}".format(to_addr)
         else:
