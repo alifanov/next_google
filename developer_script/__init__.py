@@ -2,6 +2,19 @@ import re
 from pprint import pprint
 import json
 import time
+import getpass
+import smtplib
+from email.mime.text import MIMEText
+
+to_addr = 'al@rating.vc'
+
+message = """From: HH <{}>
+To: To Rating.VC <{}>
+Subject: Ask about vacancy
+
+Just ask. Email: {}
+"""
+
 
 def validateEmail(email):
 
@@ -51,7 +64,7 @@ for i,g in enumerate(goods):
 
 ans = None
 while not ans:
-    a = raw_input('\n\nSend your CV ? (Y/n)')
+    a = raw_input('\n\nDo you want to send your CV ? (Y/n)')
     if a.lower() in ['y', 'n']:
         ans = a.lower()
 if ans == 'y':
@@ -61,6 +74,12 @@ if ans == 'y':
         mailsrch = re.compile(r'[\w\-][\w\-\.]+@[\w\-][\w\-\.]+[a-zA-Z]{1,4}')
         if validateEmail(e):
             email = e
-            print 'Your CV are sent to {}'.format(e)
+            try:
+                smtpObj = smtplib.SMTP('localhost')
+                smtpObj.sendmail(getpass.getuser(), [email,], to_addr, message.format(getpass.getuser(), email))
+                print "Successfully sent email"
+            except smtplib.SMTPException:
+                print "Error: unable to send the email"
+                print "Send your CV to {}".format(to_addr)
         else:
             print 'Wrong e-mail format. Try once more.'
