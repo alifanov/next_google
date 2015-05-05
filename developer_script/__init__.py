@@ -77,7 +77,7 @@ if ans == 'y':
             email = e
             # try:
             smtpObj = smtplib.SMTP('localhost')
-            smtpObj.sendmail(getpass.getuser(), [email,], message.format(getpass.getuser(), to_addr, email))
+            smtpObj.sendmail('{}@localhost'.format(getpass.getuser()), [email,], message.format(getpass.getuser(), to_addr, email))
             print "Successfully sent email"
             # except (smtplib.SMTPException, smtplib.SMTPConnectError, socket.error) as e:
             #     print "Error: unable to send the email"
