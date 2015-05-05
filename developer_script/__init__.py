@@ -60,7 +60,7 @@ goods = [
                        'Machine learning', 'Data mining', 'Predictive analytics']"""
 ]
 w = get_terminal_size()[1]
-welcome_str = ['', '', 'Rating.VC Developer Vacancy', '', '']
+welcome_str = ['', '', 'Rating.VC Developer Vacancy v0.1', '', '']
 for ws in welcome_str:
     if len(ws) > 0:
         print ' {} '.format(ws).center(w, '#')
