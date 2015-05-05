@@ -75,12 +75,12 @@ if ans == 'y':
         mailsrch = re.compile(r'[\w\-][\w\-\.]+@[\w\-][\w\-\.]+[a-zA-Z]{1,4}')
         if validateEmail(e):
             email = e
-            # try:
-            smtpObj = smtplib.SMTP('localhost')
-            smtpObj.sendmail('{}@localhost'.format(getpass.getuser()), [to_addr,], message.format(getpass.getuser(), to_addr, email))
-            print "Successfully sent email"
-            # except (smtplib.SMTPException, smtplib.SMTPConnectError, socket.error) as e:
-            #     print "Error: unable to send the email"
-            #     print "Send your CV to {}".format(to_addr)
+            try:
+                smtpObj = smtplib.SMTP('localhost')
+                smtpObj.sendmail('{}@localhost'.format(getpass.getuser()), [to_addr,], message.format(getpass.getuser(), to_addr, email))
+                print "Successfully sent email"
+            except (smtplib.SMTPException, smtplib.SMTPConnectError, socket.error) as e:
+                print "Error: unable to send the email"
+                print "Send your CV to {}".format(to_addr)
         else:
             print 'Wrong e-mail format. Try once more.'
