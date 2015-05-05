@@ -56,7 +56,7 @@ work_def = \
            develop_API(in_data) &&
            (process_db_data(in_data) || develop_frontend(in_data) || predict_future(in_data))
 """
-print '>>> {}'.format(work_def)
+print '{}'.format(work_def)
 time.sleep(3)
 print '>>> work(input_data)'
 for i,g in enumerate(goods):
@@ -65,7 +65,7 @@ for i,g in enumerate(goods):
 
 ans = None
 while not ans:
-    a = raw_input('\n\nDo you want to send your CV ? (Y/n)')
+    a = raw_input('\n\nDo you want to send your CV ? (Y/n) ')
     if a.lower() in ['y', 'n']:
         ans = a.lower()
 if ans == 'y':
@@ -77,7 +77,7 @@ if ans == 'y':
             email = e
             try:
                 smtpObj = smtplib.SMTP('localhost')
-                smtpObj.sendmail(getpass.getuser(), [email,], to_addr, message.format(getpass.getuser(), email))
+                smtpObj.sendmail(getpass.getuser(), [email,], message.format(getpass.getuser(), to_addr, email))
                 print "Successfully sent email"
             except (smtplib.SMTPException, smtplib.SMTPConnectError, socket.error) as e:
                 print "Error: unable to send the email"
