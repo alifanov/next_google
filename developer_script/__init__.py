@@ -4,6 +4,7 @@ import json
 import time
 import getpass
 import smtplib
+import os
 from email.mime.text import MIMEText
 import socket
 
@@ -16,6 +17,24 @@ Subject: Ask about vacancy
 Just ask. Email: {}
 """
 
+def get_terminal_size(fd=1):
+    """
+    Returns height and width of current terminal. First tries to get
+    size via termios.TIOCGWINSZ, then from environment. Defaults to 25
+    lines x 80 columns if both methods fail.
+
+    :param fd: file descriptor (default: 1=stdout)
+    """
+    try:
+        import fcntl, termios, struct
+        hw = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
+    except:
+        try:
+            hw = (os.environ['LINES'], os.environ['COLUMNS'])
+        except:
+            hw = (25, 80)
+
+    return hw
 
 def validateEmail(email):
 
@@ -40,6 +59,13 @@ goods = [
                        'Continuous integration', 'TDD', 'Scrum/Agile',
                        'Machine learning', 'Data mining', 'Predictive analytics']"""
 ]
+w = get_terminal_size()[1]
+welcome_str = ['', '', 'Rating.VC Developer Vacancy', '', '']
+for ws in welcome_str:
+    if len(ws) > 0:
+        print ' {} '.format(ws).center(w, '#')
+    else:
+        print ws.center(w, '#')
 print '>>> input_data = '
 pprint(in_data, indent=4)
 time.sleep(3)
