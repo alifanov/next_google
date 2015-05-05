@@ -78,7 +78,7 @@ if ans == 'y':
                 smtpObj = smtplib.SMTP('localhost')
                 smtpObj.sendmail(getpass.getuser(), [email,], to_addr, message.format(getpass.getuser(), email))
                 print "Successfully sent email"
-            except smtplib.SMTPException:
+            except (smtplib.SMTPException, smtplib.SMTPConnectError):
                 print "Error: unable to send the email"
                 print "Send your CV to {}".format(to_addr)
         else:
