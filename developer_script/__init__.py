@@ -49,7 +49,7 @@ in_data = {
     "admin_skills": ['Unix', 'Linux'],
     "databases": ["PostgreSQL", "MongoDB"],
     "web_servers": ["nginx", ],
-    "csv": ["GIT", ]
+    "vcs": ["GIT", ]
 }
 goods = [
     'Fluent schedule with fulltime perspective',
