@@ -42,6 +42,8 @@ def validateEmail(email):
         return True
     return False
 
+text = ''
+
 in_data = {
     "languages": ['Python', 'SQL', 'JavaScript'],
     "admin_skills": ['Unix', 'Linux'],
@@ -63,12 +65,11 @@ w = get_terminal_size()[1]
 welcome_str = ['', '', 'Rating.VC Developer Vacancy v0.1', '', '']
 for ws in welcome_str:
     if len(ws) > 0:
-        print ' {} '.format(ws).center(w, '#')
+        text += ' {} '.format(ws).center(w, '#')
     else:
-        print ws.center(w, '#')
-print '>>> input_data = '
-pprint(in_data, indent=4)
-time.sleep(3)
+        text += ws.center(w, '#')
+text += '>>> input_data = '
+text += pprint.pformat(in_data, indent=4)
 work_def = \
 """
 >>> def work(in_data):
@@ -82,12 +83,14 @@ work_def = \
            develop_API(in_data) &&
            (process_db_data(in_data) || develop_frontend(in_data) || predict_future(in_data))
 """
-print '{}'.format(work_def)
-time.sleep(3)
-print '>>> work(input_data)'
+text += work_def
+text += '>>> work(input_data)'
 for i,g in enumerate(goods):
-    print '[{}]: {}'.format(i, g)
-    time.sleep(1)
+    text += '[{}]: {}'.format(i, g)
+
+for l in text.splitlines():
+    print l
+    time.sleep(0.5)
 
 ans = None
 while not ans:
