@@ -1,5 +1,5 @@
 import re
-from pprint import pprint
+from pprint import pprint, pformat
 import json
 import time
 import getpass
@@ -69,7 +69,7 @@ for ws in welcome_str:
     else:
         text += ws.center(w, '#')
 text += '>>> input_data = '
-text += pprint.pformat(in_data, indent=4)
+text += pformat(in_data, indent=4)
 work_def = \
 """
 >>> def work(in_data):
