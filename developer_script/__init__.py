@@ -65,10 +65,11 @@ w = get_terminal_size()[1]
 welcome_str = ['', '', 'Rating.VC Developer Vacancy v0.1', '', '']
 for ws in welcome_str:
     if len(ws) > 0:
-        text += ' {} '.format(ws).center(w, '#')
+        text += ' {} \n'.format(ws).center(w, '#')
     else:
         text += ws.center(w, '#')
-text += '>>> input_data = '
+        text += '\n'
+text += '>>> input_data = \n'
 text += pformat(in_data, indent=4)
 work_def = \
 """
@@ -84,9 +85,9 @@ work_def = \
            (process_db_data(in_data) || develop_frontend(in_data) || predict_future(in_data))
 """
 text += work_def
-text += '>>> work(input_data)'
+text += '>>> work(input_data)\n'
 for i,g in enumerate(goods):
-    text += '[{}]: {}'.format(i, g)
+    text += '[{}]: {}\n'.format(i, g)
 
 for l in text.splitlines():
     print l
