@@ -65,10 +65,10 @@ w = get_terminal_size()[1]
 welcome_str = ['', '', 'Rating.VC Developer Vacancy v0.1', '', '']
 for ws in welcome_str:
     if len(ws) > 0:
-        text += ' {} \n'.format(ws).center(w, '#')
+        text += ' {} '.format(ws).center(w, '#')
     else:
         text += ws.center(w, '#')
-        text += '\n'
+    text += '\n'
 text += '>>> input_data = \n'
 text += pformat(in_data, indent=4)
 work_def = \
